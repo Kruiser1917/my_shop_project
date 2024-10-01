@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ product.name }} - Мой магазин
+{% endblock %}
+
+{% block content %}
+    <h1>{{ product.name }}</h1>
+    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/no-image.png' %}{% endif %}" alt="{{ product.name }}">
+    <p>{{ product.description }}</p>
+    <p>Цена: {{ product.price }} руб.</p>
+{% endblock %}
