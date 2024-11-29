@@ -1,14 +1,19 @@
 # Python
+*.pyc
 __pycache__/
-*.py[cod]
-*.sqlite3
-*.log
-*.env
 
 # Virtual environment
 venv/
-env/
+.env
 
-# PyCharm/VSCode settings
+# Django
+db.sqlite3
+media/
+static/
+
+# PyCharm/IDE
 .idea/
-.vscode/
+.venv/
+
+# PostgreSQL backup files
+*.sql

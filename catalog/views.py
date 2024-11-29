@@ -1,7 +1,18 @@
-from django.shortcuts import render
+from django.views.generic import ListView, DetailView, TemplateView
+from .models import Product
 
-def home(request):
-    return render(request, 'catalog/home.html')
+# Главная страница с продуктами
+class HomeView(ListView):
+    model = Product
+    template_name = 'catalog/home.html'
+    context_object_name = 'products'
 
-def contacts(request):
-    return render(request, 'catalog/contacts.html')
+# Страница с деталями продукта
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'catalog/product_detail.html'
+    context_object_name = 'product'
+
+# Страница контактов
+class ContactView(TemplateView):
+    template_name = 'catalog/contact.html'

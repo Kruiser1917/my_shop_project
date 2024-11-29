@@ -1,15 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - My Shop</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <h1>Welcome to My Shop!</h1>
-        <p>This is the home page.</p>
+{% extends 'base.html' %}
+{% load static %}  <!-- Загрузите статические теги -->
+
+{% block title %}
+Главная - Мой магазин
+{% endblock %}
+
+{% block content %}
+    <h1>Наши товары</h1>
+    <div class="row">
+        {% for product in products %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <a href="{% url 'product_detail' product.pk %}">
+                        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/no-image.png' %}{% endif %}" class="card-img-top" alt="{{ product.name }}">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description|slice:":100" }}...</p>  <!-- Обрезаем описание до 100 символов -->
+                        <a href="{% url 'product_detail' product.pk %}" class="btn btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
-</body>
-</html>
+{% endblock %}
